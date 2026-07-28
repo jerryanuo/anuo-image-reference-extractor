@@ -1,11 +1,45 @@
 ---
 name: image-reference-extractor
-description: Turn uploaded images into high-quality visual reference assets. Use when the user provides one or more images and wants Codex to automatically identify characters, creatures, props, vehicles, environments, style DNA, or other reusable visual elements, then generate 1:1 reference sheets or image prompts for AI image/video production. Trigger on requests like "处理这个", "把里面的人物拆出来", "做成参考图", "生成角色三视图", "提取这个图里的元素", "拆成资产参考图", or "make reference sheets from this image".
+description: Turn uploaded images into high-quality visual reference assets for AI image/video production. Use when the user provides one or more images and wants an agent to identify characters, creatures, props, vehicles, environments, style DNA, or other reusable visual elements, then either generate 1:1 reference sheets when image generation is available or output complete image-generation prompts when it is not. Trigger on requests like "处理这个", "把里面的人物拆出来", "做成参考图", "生成角色三视图", "提取这个图里的元素", "拆成资产参考图", or "make reference sheets from this image".
 ---
 
 # Image Reference Extractor
 
 Transform a user-provided image into a clean reference asset set for downstream image or video generation. The core job is not to crop the source image; it is to recognize useful elements, preserve their visual identity and style, and rebuild them as usable reference sheets.
+
+## Runtime Modes
+
+Before acting, determine what the current host can actually do.
+
+### Mode A: Vision + Image Generation
+
+Use this mode only when you can inspect the uploaded image and directly call an image generation or image editing tool.
+
+In this mode, identify assets, generate the selected 1:1 reference sheets, save or attach the final images when possible, and report the generated outputs.
+
+### Mode B: Vision Only
+
+Use this mode when you can inspect the uploaded image but cannot generate images.
+
+In this mode, do not claim that images were generated. Output:
+
+1. Asset inventory.
+2. Extraction decisions.
+3. Style DNA.
+4. One complete prompt per reference sheet.
+5. A short note that the current host cannot generate images directly and the prompts should be pasted into an image model.
+
+### Mode C: No Image Access
+
+Use this mode when the current host cannot inspect uploaded images or cannot access the file the user referenced.
+
+In this mode, do not infer visual details. Ask the user for one of these:
+
+- Re-upload the image in a vision-capable environment.
+- Provide a short visual description.
+- Provide existing asset notes from another model.
+
+Then continue in prompt-only form from the provided description.
 
 ## Default Behavior
 
@@ -14,10 +48,11 @@ When the user gives an image and says something brief like "处理这个", infer
 1. Identify every high-value visual element in the image.
 2. Decide which elements deserve standalone reference images.
 3. Preserve the source image's style, palette, lighting, texture, and mood.
-4. Generate separate 1:1 reference sheets for the selected elements.
-5. Save the generated images to a clear output folder when the environment supports file output.
+4. Generate separate 1:1 reference sheets only in Mode A.
+5. Output complete reference-sheet prompts in Mode B.
+6. Save generated images to a clear output folder only when image generation and file output are both available.
 
-Ask a question only when the image contains too many plausible targets, the requested output type is materially ambiguous, or generation would require unavailable tools.
+Ask a question only when the image contains too many plausible targets, the requested output type is materially ambiguous, or the host cannot inspect the image.
 
 ## Element Detection
 
@@ -59,7 +94,7 @@ Keep creature logic simple and consistent. Do not turn gentle or symbolic creatu
 
 ### Prop/Object Reference Sheet
 
-Generate one square 1:1 image divided into a 2x2 grid:
+In Mode A, generate one square 1:1 image divided into a 2x2 grid:
 
 - Top-left: clean hero view.
 - Top-right: alternate angle.
@@ -70,7 +105,7 @@ Preserve silhouette, materials, color accents, wear, texture, and any functional
 
 ### Environment Reference Sheet
 
-Generate one square 1:1 image divided into a 2x2 grid:
+In Mode A, generate one square 1:1 image divided into a 2x2 grid:
 
 - Top-left: wide establishing view.
 - Top-right: mid-distance usable scene angle.
@@ -92,7 +127,7 @@ Use when the user wants the visual language preserved across future images. A st
 
 ## Prompt Construction
 
-For each generated reference sheet, build a prompt with this structure:
+For every selected reference sheet, build a prompt with this structure. In Mode A, use it internally for generation. In Mode B, output it directly for the user.
 
 ```text
 Use case: stylized-concept
@@ -123,7 +158,9 @@ Preserve style without copying protected brands, text, logos, or identifiable IP
 
 ## Batch Strategy
 
-For multiple distinct assets, make one generation call per asset or prompt. Do not ask one image call to produce several unrelated reference sheets unless the user requests a combined board.
+For multiple distinct assets in Mode A, make one generation call per asset or prompt. Do not ask one image call to produce several unrelated reference sheets unless the user requests a combined board.
+
+For multiple distinct assets in Mode B, output one clearly separated prompt per asset. Do not compress all assets into one prompt unless the user asks for a combined board.
 
 Recommended naming:
 
@@ -152,7 +189,7 @@ If a result is close but weak, iterate once with a targeted correction such as "
 
 ## Response Format
 
-When working directly for the user:
+When working in Mode A:
 
 1. State what elements were identified.
 2. State what reference sheets were generated.
@@ -160,4 +197,17 @@ When working directly for the user:
 4. Mention any conservative reconstruction caused by occlusion or ambiguity.
 5. Provide saved paths when files were written.
 
-Keep analysis short. The user mainly needs usable reference assets.
+When working in Mode B:
+
+1. State what elements were identified.
+2. State that the current host cannot directly generate the reference images.
+3. Provide the complete prompts grouped by asset.
+4. Mention any conservative reconstruction caused by occlusion or ambiguity.
+
+When working in Mode C:
+
+1. State that the current host cannot inspect the image.
+2. Ask for a re-upload, visual description, or asset notes.
+3. Do not invent details.
+
+Keep analysis short. The user mainly needs usable reference assets or usable prompts.
