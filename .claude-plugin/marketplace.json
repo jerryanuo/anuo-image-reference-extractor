@@ -1,0 +1,30 @@
+{
+  "name": "anuo-image-reference-extractor",
+  "owner": {
+    "name": "ANUO"
+  },
+  "metadata": {
+    "description": "ANUO AI 影视参考图资产拆解 Skill。把上传图片中的人物、生物、道具、场景和风格 DNA 整理成可复用参考图。",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "image-reference-extractor",
+      "description": "Turn uploaded images into reusable visual reference sheets for AI image and video production.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "creative-production",
+      "keywords": [
+        "ai-film",
+        "image-reference",
+        "character-sheet",
+        "visual-assets",
+        "chinese"
+      ],
+      "skills": [
+        "./skills/image-reference-extractor"
+      ]
+    }
+  ]
+}
