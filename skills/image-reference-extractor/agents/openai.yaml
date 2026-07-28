@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Reference Extractor"
+  short_description: "Turn images into usable visual reference sheets"
+  default_prompt: "Use $image-reference-extractor to split this uploaded image into clean character and asset reference sheets."
