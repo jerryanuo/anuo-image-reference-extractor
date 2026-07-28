@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ANUO Image Reference Extractor：把上传图片拆成 AI 影视和生图可用的参考图资产。">
+    <title>ANUO Image Reference Extractor</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: #191919;
+        background: #f6f4ef;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; line-height: 1.65; }
+      main { width: min(100% - 40px, 920px); margin: 0 auto; padding: 64px 0 52px; }
+      .eyebrow { margin: 0 0 14px; color: #6d6a62; font: 650 13px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; }
+      h1 { max-width: 780px; margin: 0; font-size: clamp(38px, 7vw, 72px); line-height: 1.06; letter-spacing: 0; }
+      .lead { max-width: 700px; margin: 24px 0 0; font-size: clamp(18px, 2.5vw, 24px); color: #4d4a44; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 54px; }
+      a { color: inherit; }
+      .button { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 17px; border: 1px solid #191919; border-radius: 8px; text-decoration: none; font-weight: 680; }
+      .button.primary { color: #fff; background: #191919; }
+      section { padding: 28px 0; border-top: 1px solid #d8d3c8; }
+      h2 { margin: 0 0 12px; font-size: 23px; letter-spacing: 0; }
+      p { margin: 0; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+      .item { padding: 14px 0; border-top: 1px solid #e2ded4; }
+      .item strong { display: block; margin-bottom: 3px; }
+      code { display: block; overflow-x: auto; margin-top: 16px; padding: 17px; border-radius: 8px; color: #f2f2f2; background: #202020; font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; }
+      .support { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: 24px; align-items: center; }
+      .qr { min-height: 180px; display: grid; place-items: center; border: 1px dashed #a9a397; border-radius: 8px; color: #6d6a62; text-align: center; padding: 16px; }
+      footer { margin-top: 34px; color: #6d6a62; font-size: 14px; }
+      @media (max-width: 680px) {
+        main { width: min(100% - 32px, 920px); padding-top: 44px; }
+        .grid, .support { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">ANUO / AI Film Skill</p>
+      <h1>把一张图，拆成能继续生成的视觉资产。</h1>
+      <p class="lead">Image Reference Extractor 面向 AI 影视和生图创作者，把上传图片中的人物、生物、道具、场景和风格 DNA 整理成可复用参考图。</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/jerryanuo/anuo-image-reference-extractor">前往 GitHub</a>
+        <a class="button" href="../docs/新手入门.md">查看使用手册</a>
+      </div>
+
+      <section>
+        <h2>开始使用</h2>
+        <p>安装后上传图片，直接对 Agent 说：</p>
+        <code>用 $image-reference-extractor 处理这个</code>
+      </section>
+
+      <section>
+        <h2>你会得到</h2>
+        <div class="grid">
+          <div class="item"><strong>角色参考表</strong><span>面部、正面全身、三分之二角度、侧/背面角度。</span></div>
+          <div class="item"><strong>生物参考表</strong><span>保留轮廓、材质、特殊结构和视觉气质。</span></div>
+          <div class="item"><strong>道具参考表</strong><span>整理武器、产品、载具、装置和关键物件。</span></div>
+          <div class="item"><strong>风格 DNA</strong><span>提取色彩、光影、材质、笔触、颗粒和氛围。</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>作者与支持</h2>
+        <div class="support">
+          <p>作者：ANUO。关注 <a href="https://www.xiaohongshu.com/user/profile/642e3657000000001002ae78">小红书</a> 或 <a href="https://www.douyin.com/user/MS4wLjABAAAACgn6P9K0SInlEXoZeRcqYY2y9asqvwd_SzBaXmj64CY">抖音</a>，后续可以在这里替换为公众号文章和答疑群入口。</p>
+          <div class="qr">二维码位置<br>docs/qrcode.png</div>
+        </div>
+      </section>
+
+      <footer>CC BY-NC 4.0 · Personal learning and non-commercial use.</footer>
+    </main>
+  </body>
+</html>
