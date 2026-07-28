@@ -97,9 +97,11 @@ ANUO 关注 AI 影视、图像提示词、关键帧、视觉资产拆解和创�
 - 小红书：[ANUO](https://www.xiaohongshu.com/user/profile/642e3657000000001002ae78)
 - 抖音：[ANUO](https://www.douyin.com/user/MS4wLjABAAAACgn6P9K0SInlEXoZeRcqYY2y9asqvwd_SzBaXmj64CY)
 - 公众号文章链接：待补充
-- 答疑群二维码：建议放在 `docs/qrcode.png`，并在这里展示
+- 答疑群说明：[ANUO AI 影视答疑社群](https://ewm9oiee0oo.feishu.cn/wiki/Px3rwUrJTinIBkk4XWYccs2enfh?from=from_copylink)
 
-如果你是从这个 Skill 过来的，可以先看那篇公众号文章，再决定要不要进答疑群。
+如果你是从这个 Skill 过来的，可以先看答疑群说明，再决定要不要加入。
+
+![ANUO AI 影视答疑群二维码](docs/qrcode.png)
 
 ## 许可证
 
