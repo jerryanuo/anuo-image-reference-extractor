@@ -30,7 +30,8 @@
       .item strong { display: block; margin-bottom: 3px; }
       code { display: block; overflow-x: auto; margin-top: 16px; padding: 17px; border-radius: 8px; color: #f2f2f2; background: #202020; font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; }
       .support { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: 24px; align-items: center; }
-      .qr { min-height: 180px; display: grid; place-items: center; border: 1px dashed #a9a397; border-radius: 8px; color: #6d6a62; text-align: center; padding: 16px; }
+      .qr { min-height: 180px; display: grid; place-items: center; border: 1px solid #d8d3c8; border-radius: 8px; background: #fff; padding: 10px; }
+      .qr img { width: 100%; height: auto; display: block; border-radius: 4px; }
       footer { margin-top: 34px; color: #6d6a62; font-size: 14px; }
       @media (max-width: 680px) {
         main { width: min(100% - 32px, 920px); padding-top: 44px; }
@@ -67,8 +68,10 @@
       <section>
         <h2>作者与支持</h2>
         <div class="support">
-          <p>作者：ANUO。关注 <a href="https://www.xiaohongshu.com/user/profile/642e3657000000001002ae78">小红书</a> 或 <a href="https://www.douyin.com/user/MS4wLjABAAAACgn6P9K0SInlEXoZeRcqYY2y9asqvwd_SzBaXmj64CY">抖音</a>，后续可以在这里替换为公众号文章和答疑群入口。</p>
-          <div class="qr">二维码位置<br>docs/qrcode.png</div>
+          <p>作者：ANUO。关注 <a href="https://www.xiaohongshu.com/user/profile/642e3657000000001002ae78">小红书</a> 或 <a href="https://www.douyin.com/user/MS4wLjABAAAACgn6P9K0SInlEXoZeRcqYY2y9asqvwd_SzBaXmj64CY">抖音</a>。如果你想围绕 AI 影视、提示词、关键帧和视觉资产拆解继续提问，可以查看 <a href="https://ewm9oiee0oo.feishu.cn/wiki/Px3rwUrJTinIBkk4XWYccs2enfh?from=from_copylink">ANUO AI 影视答疑社群</a>。</p>
+          <a class="qr" href="https://ewm9oiee0oo.feishu.cn/wiki/Px3rwUrJTinIBkk4XWYccs2enfh?from=from_copylink" aria-label="ANUO AI 影视答疑群">
+            <img src="../docs/qrcode.png" alt="ANUO AI 影视答疑群二维码">
+          </a>
         </div>
       </section>
 
